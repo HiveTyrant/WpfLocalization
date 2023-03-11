@@ -1,0 +1,76 @@
+﻿<Window x:Class="LocalizationWpfDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:LocalizationService.Localization;assembly=LocalizationService"
+        xmlns:localizationConverters="clr-namespace:LocalizationService.Converters;assembly=LocalizationService"
+        xmlns:local="clr-namespace:LocalizationWpfDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="900">
+    <Window.Resources>
+        <localizationConverters:LocalizedValueConverter x:Key ="LValueConverter"/>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="4,0,0,0">
+            <TextBlock Text="CurrentCulture: " />
+            <TextBlock Text="{Binding CurrentCulture.Name}" />
+        </StackPanel>
+
+        <TextBlock Margin="4,15,0,0" Text="Text translations - From MultiCultureLocalization translations" TextDecorations="Underline" FontWeight="Bold" />
+        <StackPanel Margin="20,0,0,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="4" Text="{l:Localize Key_0025}" />
+                <TextBlock Margin="4" Text=" (Key_0025 text)" />
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock Margin="4,15,0,0" Text="Text translations - From extra translations (not included for all available cultures)" TextDecorations="Underline" FontWeight="Bold" />
+        <StackPanel Margin="20,0,0,0">
+            <TextBlock Margin="4" Name="LblTitle" Text="{l:Localize}" />
+
+            <TextBlock Margin="4" Name="SomeText1Label" Text="{l:Localize SomeText1}" />
+
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="4" Text="Count: " />
+                <TextBlock Margin="4" Text="{Binding SliderValue}" />
+                <Slider Margin="10,4,4,4" Value="{Binding SliderValue}" Minimum="0" Maximum="5" Width="100"/>
+            </StackPanel>
+            <TextBlock Margin="4" Text="{l:Localize KeySource={Binding SliderValueKey}, CountSource={Binding SliderValue}}" />
+        </StackPanel>
+
+        <TextBlock Margin="4,15,0,0" Text="Value formatting using LocalizedValueConverter (not included for all available cultures)" TextDecorations="Underline" FontWeight="Bold" />
+        <StackPanel Margin="20,0,0,0">
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="4" Text="{l:Localize DecimalNumber}" />
+                <TextBlock Margin="4" Text="{Binding FloatValue, Converter={StaticResource LValueConverter}}" />
+                <TextBlock Margin="4" Text=" (type float)" />
+                <TextBlock Margin="4" Text="{Binding FloatValue, Converter={StaticResource LValueConverter}, ConverterParameter='N0'}" />
+                <TextBlock Margin="4" Text=" (type float - overriden to format N0)" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="4" Text="{l:Localize DateValue}" />
+                <TextBlock Margin="4" Text="{Binding DateValue, Converter={StaticResource LValueConverter}}" />
+                <TextBlock Margin="4" Text=" (type DateTime)" />
+                <TextBlock Margin="4" Text="{Binding DateValue, Converter={StaticResource LValueConverter}, ConverterParameter='yyyyMMdd HH:mm:ss'}" />
+                <TextBlock Margin="4" Text=" (type DateTime - overridden to format yyyyMMdd HH:mm:ss)" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Margin="4" Text="{l:Localize CurrencyValue}" />
+                <TextBlock Margin="4" Text="{Binding CurrencyValue, Converter={StaticResource LValueConverter}}" />
+                <TextBlock Margin="4" Text=" (type decimal)" />
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock Margin="14,10,0,0" Text="Note: Translations that result in eg. '_Text' or 'SomeControlName.SomePropertyName' means that translation wasn't found" />
+
+        <Button Margin="10, 20, 10, 0" Name="Button1" Content="{l:Localize}" Click="Button1_Click" Width="135"/>
+    </StackPanel>
+</Window>

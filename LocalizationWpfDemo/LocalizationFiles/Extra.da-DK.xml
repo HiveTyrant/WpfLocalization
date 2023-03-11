@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entries>
+	<Entry key="SomeText1">
+		<Value>En eller anden text linje</Value>
+	</Entry>
+	<Entry key="SomeText2">
+		Tjener der er en flue i min suppe
+	</Entry>
+	<Entry key="Key22">
+		<Value>Der er et element i listen</Value>
+		<ZeroValue>Der er ingen elementer i listen</ZeroValue>
+		<PluralValue>Listen indeholder {0} elementer</PluralValue>
+	</Entry>
+	<Entry key="Button1_Content">
+		<Value>Skift sprog</Value>
+	</Entry>
+	<Entry key="LblTitle_Text">
+		<Value>Demo af sprog oversættelse</Value>
+	</Entry>
+	<Entry key="DecimalNumber">
+		<Value>Komma tal</Value>
+	</Entry>
+	<Entry key="DateValue">
+		<Value>Dato</Value>
+	</Entry>
+	<Entry key="CurrencyValue">
+		<Value>Valuta</Value>
+	</Entry>
+</Entries>

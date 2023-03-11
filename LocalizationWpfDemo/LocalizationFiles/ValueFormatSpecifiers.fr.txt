@@ -1,0 +1,3 @@
+DateStringFormat;F
+DecimalStringFormat;C2
+FloatStringFormat;N1
