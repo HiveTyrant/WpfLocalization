@@ -15,7 +15,7 @@ A simple library that makes WPF Localization easier.
 
 ## Demo
 
-![Demo GIF](https://i.imgur.com/fEO8Fjp.gif)
+![Demo GIF](https://github.com/HiveTyrant/WpfLocalization/blob/main/WpfLocalizationDemo.gif)
 
 ## How to use
 
@@ -24,10 +24,10 @@ A simple library that makes WPF Localization easier.
 - **WpfLocalization** doesn't use resources.resx files.
 - **WpfLocalization** works with cultures to identify languages (`CultureInfo` class)
 - There are 4 types of readers for now:
-  - SingleCultureCsvFileReader: Each line is considered to have at least a key and a value seperated by a ;-char (e.g. TODO: Add link)
-  - SingleCultureJsonFileReader: A json file of a key-object format (e.g. TODO: Add link)
-  - SingleCultureXmlFileReader: A xml file with an `<Entries>` root and `<Entry>` elements, each must have a key attribute (e.g. TODO: Add link)
-  - MultiCultureXmlFileReader: A xml file with an more complex format, that supports loading multible cultures from one file, eg. received from a translation bureau(e.g. TODO: Add link)
+  - SingleCultureCsvFileReader: Each line is considered to have at least a key and a value seperated by a ;-char (e.g. https://github.com/HiveTyrant/WpfLocalization/blob/main/LocalizationWpfDemo/LocalizationFiles/Extra.en-GB.txt)
+  - SingleCultureJsonFileReader: A json file of a key-object format (e.g. https://github.com/HiveTyrant/WpfLocalization/blob/main/LocalizationWpfDemo/LocalizationFiles/Extra.fr.json)
+  - SingleCultureXmlFileReader: A xml file with an `<Entries>` root and `<Entry>` elements, each must have a key attribute (e.g. https://github.com/HiveTyrant/WpfLocalization/blob/main/LocalizationWpfDemo/LocalizationFiles/Extra.da-DK.xml)
+  - MultiCultureXmlFileReader: A xml file with an more complex format, that supports loading multible cultures from one file, eg. received from a translation bureau(e.g. https://github.com/HiveTyrant/WpfLocalization/blob/main/LocalizationWpfDemo/LocalizationFiles/OrigoMulticultureLocalization.xml)
 
     Notice, only the SingleCulture readers support loading zero and plural string values
 
