@@ -26,4 +26,16 @@
 	<Entry key="CurrencyValue">
 		<Value>Valuta</Value>
 	</Entry>
+    <Entry key="Key_EngineType">
+		<Value>Motor type:</Value>
+	</Entry>
+	<Entry key="Key_EngineInternalCombustion">
+		<Value>Forbrændingsmotor</Value>
+	</Entry>
+	<Entry key="Key_EngineElectric">
+		<Value>Elektriskmotor</Value>
+	</Entry>
+	<Entry key="Key_EngineHybrid">
+		<Value>Hybridmotor</Value>
+	</Entry>
 </Entries>

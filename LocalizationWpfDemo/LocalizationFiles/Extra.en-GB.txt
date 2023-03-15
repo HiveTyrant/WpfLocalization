@@ -6,3 +6,7 @@ LblTitle_Text;Localization demo program
 DecimalNumber;Decimal number
 DateValue;Date
 CurrencyValue;Curency
+Key_EngineType;Motor type:
+Key_EngineInternalCombustion;Internal combustion engine;
+Key_EngineElectric;Electric engine
+Key_EngineHybrid;Hybrid engine

@@ -20,12 +20,13 @@ namespace LocalizationWpfDemo
         private int _sliderValue = 0;
         private float _floatValue = (float)12345.67;
         private CultureInfo? _currentCulture;
+        private LocalizedEngineTypeEnum _selectedEngineType;
 
         #endregion
 
         #region Properties
 
-        public float FloatValue 
+        public float FloatValue
         {
             get => _floatValue;
             set
@@ -49,7 +50,7 @@ namespace LocalizationWpfDemo
                 OnPropertyChanged();
             }
         }
-        
+
         public string SliderValueKey
         {
             get => _sliderValueKey;
@@ -68,10 +69,30 @@ namespace LocalizationWpfDemo
             get => _sliderValue;
             set
             {
-                if (_sliderValue == value)
-                    return;
+                if (_sliderValue == value) return;
 
                 _sliderValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<LocalizedEngineTypeEnum> EngineTypes { get; } = new()
+        {
+            LocalizedEngineTypeEnum.InternalCombustion,
+            LocalizedEngineTypeEnum.Electric,
+            LocalizedEngineTypeEnum.Hybrid,
+            LocalizedEngineTypeEnum.Steam,
+            LocalizedEngineTypeEnum.RubberBand
+        };
+
+        public LocalizedEngineTypeEnum SelectedEngineType
+        {
+            get => _selectedEngineType;
+            set
+            {
+                if (_selectedEngineType == value) return;
+
+                _selectedEngineType = value;
                 OnPropertyChanged();
             }
         }
@@ -94,6 +115,8 @@ namespace LocalizationWpfDemo
             LocalizationManager.Instance.AddCulture(CultureInfo.GetCultureInfo("en-GB"), new SingleCultureCsvFileReader("LocalizationFiles/ValueFormatSpecifiers.en-GB.txt"));
             LocalizationManager.Instance.AddCulture(CultureInfo.GetCultureInfo("da-DK"), new SingleCultureCsvFileReader("LocalizationFiles/ValueFormatSpecifiers.da-DK.txt"));
             LocalizationManager.Instance.AddCulture(CultureInfo.GetCultureInfo("fr"), new SingleCultureCsvFileReader("LocalizationFiles/ValueFormatSpecifiers.fr.txt"));
+
+            var str = LocalizedEngineTypeEnum.InternalCombustion.ToString();
         }
 
         private void OnCultureChanged(object? sender, PropertyChangedEventArgs e)
@@ -104,7 +127,9 @@ namespace LocalizationWpfDemo
             OnPropertyChanged(nameof(FloatValue));
             OnPropertyChanged(nameof(DateValue));
             OnPropertyChanged(nameof(CurrencyValue));
-         }
+            OnPropertyChanged(nameof(EngineTypes));
+            OnPropertyChanged(nameof(SelectedEngineType));
+        }
 
         #region INotifyPropertyChanged
 

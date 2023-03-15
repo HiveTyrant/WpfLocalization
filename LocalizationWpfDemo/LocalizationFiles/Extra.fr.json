@@ -24,5 +24,17 @@
   },
   "CurrencyValue": {
     "Value": "Monnaie"
+  },
+  "Key_EngineType": {
+    "Value": "Type de moteur"
+  },
+  "Key_EngineInternalCombustion": {
+    "Value": "Moteur de combinaison interne"
+  },
+  "Key_EngineElectric": {
+    "Value": "Moteur électrique"
+  },
+  "Key_EngineHybrid": {
+    "Value": "Moteur hybride"
   }
 }
