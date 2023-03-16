@@ -66,7 +66,8 @@ namespace LocalizationService.MarkupExtensions
             if (KeySource != null) multiBinding.Bindings.Add(KeySource);
             if (CountSource != null) multiBinding.Bindings.Add(CountSource);
 
-            return multiBinding.ProvideValue(serviceProvider);
+            var result = multiBinding.ProvideValue(serviceProvider);
+            return result;
         }
 
         #endregion

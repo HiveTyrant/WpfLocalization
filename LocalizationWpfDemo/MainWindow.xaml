@@ -3,14 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:l="clr-namespace:LocalizationService.MarkupExtensions;assembly=LocalizationService"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:l="clr-namespace:LocalizationService.MarkupExtensions;assembly=LocalizationService"
         xmlns:localizationConverters="clr-namespace:LocalizationService.Converters;assembly=LocalizationService"
         xmlns:local="clr-namespace:LocalizationWpfDemo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="900">
+        Title="MainWindow" Height="650" Width="900">
     <Window.Resources>
         <localizationConverters:LocalizedValueTypeValueConverter x:Key ="LValueConverter"/>
+        <localizationConverters:LocalizedEnumToDescriptionValueConverter x:Key ="LEnumConverter"/>
     </Window.Resources>
 
     <Window.DataContext>
@@ -51,20 +52,36 @@
 
             <StackPanel Margin ="0,0,0,0" Orientation="Horizontal">
                 <TextBlock Margin="4" Text="{l:LocalizedText Key_EngineType}" />
-                <ComboBox ItemsSource="{Binding EngineTypes}"
-                          SelectedItem="{Binding SelectedEngineType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          Width="175"
-                          Margin="10,4,4,4"
-                          VerticalAlignment="Center"/>
-                <ComboBox ItemsSource="{Binding Source={l:EnumBindingSource {x:Type local:LocalizedEngineTypeEnum}}}"
-                          SelectedItem="{Binding SelectedEngineType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          Width="200"
-                          Margin="10,4,4,4"
-                          VerticalAlignment="Center"/>
-                <TextBlock Margin="4" Text=" Selected:" />
+                <TextBlock Margin="4" Text=" Selected Engine:" />
                 <TextBlock Margin="4" Text="{Binding SelectedEngineType}" />
             </StackPanel>
 
+            <StackPanel Margin ="0,0,0,0" Orientation="Horizontal">
+                <ComboBox ItemsSource="{Binding EngineTypes}"
+                          SelectedItem="{Binding SelectedEngineType}"
+                          Width="200" Margin="10,4,4,4" VerticalAlignment="Center"/>
+                <TextBlock Margin="4" Text=" (Binding to List of Enum, Localization by EnumDescription-TYPE-Converter)" />
+            </StackPanel>
+
+            <StackPanel Margin ="0,0,0,0" Orientation="Horizontal">
+                <ComboBox ItemsSource="{Binding Source={l:EnumBindingSource {x:Type local:LocalizedEngineTypeEnum}}}"
+                          SelectedItem="{Binding SelectedEngineType}"
+                          Width="200" Margin="10,4,4,4" VerticalAlignment="Center"/>
+                <TextBlock Margin="4" Text=" (Binding to Enums (only displaying Enum fields with descriptions))" />
+            </StackPanel>
+
+            <StackPanel Margin ="0,0,0,0" Orientation="Horizontal">
+                <ComboBox ItemsSource="{Binding EngineTypes, Converter={StaticResource LEnumConverter}}"
+                          SelectedItem="{Binding SelectedEngineType}"
+                          Width="200" Margin="10,4,4,4" VerticalAlignment="Center" >
+                    <!--<ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource LEnumConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>-->
+                </ComboBox>
+                <TextBlock Margin="4" Text=" (Binding to List of Enum, Localization by EnumToDescription-VALUE-Converter)" />
+            </StackPanel>
         </StackPanel>
 
         <TextBlock Margin="4,15,0,0" Text="Value formatting using LocalizedValueConverter (not included for all available cultures)" TextDecorations="Underline" FontWeight="Bold" />

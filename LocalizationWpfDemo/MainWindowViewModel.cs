@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace LocalizationWpfDemo
         private float _floatValue = (float)12345.67;
         private CultureInfo? _currentCulture;
         private LocalizedEngineTypeEnum _selectedEngineType;
+        private ObservableCollection<LocalizedEngineTypeEnum>? _engineTypes;
 
         #endregion
 
@@ -76,14 +78,16 @@ namespace LocalizationWpfDemo
             }
         }
 
-        public List<LocalizedEngineTypeEnum> EngineTypes { get; } = new()
+        public ObservableCollection<LocalizedEngineTypeEnum>? EngineTypes
         {
-            LocalizedEngineTypeEnum.InternalCombustion,
-            LocalizedEngineTypeEnum.Electric,
-            LocalizedEngineTypeEnum.Hybrid,
-            LocalizedEngineTypeEnum.Steam,
-            LocalizedEngineTypeEnum.RubberBand
-        };
+            get => _engineTypes;
+            set
+            {
+                if (_engineTypes == value) return;
+                _engineTypes = value;
+                OnPropertyChanged(nameof(EngineTypes));
+            }
+        }
 
         public LocalizedEngineTypeEnum SelectedEngineType
         {
@@ -129,6 +133,17 @@ namespace LocalizationWpfDemo
             OnPropertyChanged(nameof(CurrencyValue));
             OnPropertyChanged(nameof(EngineTypes));
             OnPropertyChanged(nameof(SelectedEngineType));
+
+            // ItemSources, eg. in a Combobox, are cached and doesn't refresh due to a PropertyChanged call (or i don't know how).
+            // Sadly the content must be refreshed!
+            EngineTypes = new ObservableCollection<LocalizedEngineTypeEnum>
+            {
+                LocalizedEngineTypeEnum.InternalCombustion,
+                LocalizedEngineTypeEnum.Electric,
+                LocalizedEngineTypeEnum.Hybrid,
+                LocalizedEngineTypeEnum.Steam,
+                LocalizedEngineTypeEnum.RubberBand
+            };
         }
 
         #region INotifyPropertyChanged
