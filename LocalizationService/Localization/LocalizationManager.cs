@@ -58,7 +58,6 @@ namespace LocalizationService.Localization
 
         #region Public Methods
 
-
         public void AddCulture(CultureInfo culture, FileReader<Dictionary<string, LocalizationEntry>> reader, bool setAsCurrentCulture = false)
         {
             var cultureEntry = reader.GetEntries();
@@ -105,6 +104,9 @@ namespace LocalizationService.Localization
         }
 
         #endregion
+
+        #region Helper methods
+
         private void UpdateCultureEntry(CultureInfo culture, Dictionary<string, LocalizationEntry> cultureEntry)
         {
             if (!_languageEntries.ContainsKey(culture)) 
@@ -115,5 +117,7 @@ namespace LocalizationService.Localization
                 foreach (var localizationEntry in cultureEntry)
                     _languageEntries[culture][localizationEntry.Key] = localizationEntry.Value;
         }
+
+        #endregion
     }
 }

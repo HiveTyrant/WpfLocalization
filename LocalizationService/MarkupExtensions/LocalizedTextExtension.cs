@@ -2,10 +2,11 @@
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
+using LocalizationService.Localization;
 
-namespace LocalizationService.Localization
+namespace LocalizationService.MarkupExtensions
 {
-    public class LocalizeExtension : MarkupExtension
+    public class LocalizedTextExtension : MarkupExtension
     {
         #region Properties
 
@@ -17,28 +18,34 @@ namespace LocalizationService.Localization
 
         #endregion
 
-        public LocalizeExtension() { }
+        #region Initialization
 
-        public LocalizeExtension(string key)
+        public LocalizedTextExtension() { }
+
+        public LocalizedTextExtension(string key)
         {
             Key = key;
         }
 
-        public LocalizeExtension(string key, Binding countSource) : this(key)
+        public LocalizedTextExtension(string key, Binding countSource) : this(key)
         {
             CountSource = countSource;
         }
 
-        public LocalizeExtension(Binding keySource, Binding countSource)
+        public LocalizedTextExtension(Binding keySource, Binding countSource)
         {
             KeySource = keySource;
             CountSource = countSource;
         }
 
+        #endregion
+
         #region Public Methods
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
+            // hmm, this is also called at design time and serviceProvider may be null.... is that handled ok?
+
             var provideValueTarget = serviceProvider as IProvideValueTarget;
             var targetObject = provideValueTarget?.TargetObject as FrameworkElement;
             var targetProperty = provideValueTarget?.TargetProperty as DependencyProperty;
@@ -59,7 +66,8 @@ namespace LocalizationService.Localization
             if (KeySource != null) multiBinding.Bindings.Add(KeySource);
             if (CountSource != null) multiBinding.Bindings.Add(CountSource);
 
-            return multiBinding.ProvideValue(serviceProvider);
+            var result = multiBinding.ProvideValue(serviceProvider);
+            return result;
         }
 
         #endregion

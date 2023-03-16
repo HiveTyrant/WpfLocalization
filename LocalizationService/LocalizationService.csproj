@@ -8,6 +8,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Converters\LocalizedTextValueConverter.cs" />
+	  <Compile Remove="MarkupExtensions\LocalizedListExtension.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="System.IO.Packaging" Version="7.0.0" />
 	</ItemGroup>
 

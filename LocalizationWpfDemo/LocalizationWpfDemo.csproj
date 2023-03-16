@@ -30,7 +30,7 @@
     <None Update="LocalizationFiles\Extra.fr.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="LocalizationFiles\OrigoMulticultureLocalization.xml">
+    <None Update="LocalizationFiles\MultiCultureLocalization.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

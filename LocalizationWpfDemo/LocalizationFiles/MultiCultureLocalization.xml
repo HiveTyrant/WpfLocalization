@@ -1,0 +1,34 @@
+﻿<localization>
+	<languages>
+		<language name="English" culture="en-GB" iso="GBR" index="0" visible="true" flag="great_britain" />
+		<language name="Dansk" culture="da-DK" iso="DAN" index="1" visible="true" flag="denmark" />
+		<language name="Deutsch" culture="de-DE" iso="GER" index="2" visible="true" flag="germany" />
+		<language name="Polski" culture="pl-PL" iso="PLK " index="3" visible="true" flag="poland" />
+		<language name="Svensk" culture="sv-SE" iso="SE" index="4" visible="true" flag="sweden" />
+		<language name="Norsk" culture="nb-NO" iso="NO" index="5" visible="true" flag="norway" />
+	</languages>
+
+	<translations>
+		<tran key="Key_0001" en-GB="{0} (ADJUSTED)" da-DK="{0} (JUSTERET)" pl-PL="{0} (REGULACJA)" de-DE="{0} (ANPASSEN)" sv-SE="{0} (JUSTERAT)" nb-NO="{0} (JUSTERT)"/>
+		<tran key="Key_0002" en-GB="{0} (RUNNING)" da-DK="{0} (KØRENDE)" pl-PL="{0} (URUCHOMIENIE)" de-DE="{0} (BETRIEB)" sv-SE="{0} (KÖRS)" nb-NO="{0} (KJØRER)"/>
+		<tran key="Key_0003" en-GB="{0} disconnected, Conveyors stopped!" da-DK="{0} mistede forbindelsen, bånd stoppet!" pl-PL="Rozłączono {0}, przenośniki zatrzymane!" de-DE="{0} keine Verbindung, das Band angehalten!" sv-SE="{0} kopplade från, rullbanden är stoppade!" nb-NO="{0} frakoblet, Båndene stoppet!"/>
+		<tran key="Key_0004" en-GB="{0} More..." da-DK="{0} Flere..." pl-PL="{0} więcej..." de-DE="{0} Mehr..." sv-SE="{0} Fler..." nb-NO="{0} Flere …"/>
+		<tran key="Key_0005" en-GB="{0} reports have not been exported, if 500 report limit is hit, production cannot be continued!" da-DK="{0} rapporter er ikke blevet eksporteret, hvis grænse på 500 rammes, kan produktion ikke fortsætte!" pl-PL="Liczba raportów nie wyeksportowanych: {0}. Po osiągnięciu limitu 500 raportów nie można kontynuować produkcji!" de-DE="{0} berichte sind noch nicht übertragen, maximale Kapazität 500 Berichte erreicht, Produktion kann nicht fortgesetzt werden!" sv-SE="{0} rapporter har inte exporterats, om rapportgränsen på 500 uppnås kan produktionen inte fortsätta!" nb-NO="{0} rapporter er ikke blitt eksportert, hvis grensen på 500 rapporter nås, kan produksjonen ikke fortsette!"/>
+		<tran key="Key_0006" en-GB="{0} reports have not been exported, if 500 report limit is hit, reports will not be saved!" da-DK="{0} rapporter er ikke blevet eksporteret, hvis grænse på 500 rammes, bliver rapporterne ikke gemt!" pl-PL="Liczba raportów nie wyeksportowanych: {0}. Po osiągnięciu limitu 500 raportów nie można zapisać raportów!" de-DE="{0} berichte sind noch nicht übertragen, maximale Kapazität 500 Berichte erreicht, Produktion kann nicht fortgesetzt werden!" sv-SE="{0} rapporter har inte exporterats, om rapportgränsen på 500 uppnås sparas inte rapporter!" nb-NO="{0} rapporter er ikke blitt eksportert, hvis grensen på 500 rapporter nås, blir rapportene ikke lagret!"/>
+		<tran key="Key_0007" en-GB="Above Nominal" da-DK="Over Nominel" pl-PL="Ponad wartość nominalną" de-DE="Oberhalb Nennwert" sv-SE="Över nominell" nb-NO="Over Nominell"/>
+		<tran key="Key_0008" en-GB="Accepted" da-DK="Accepteret" pl-PL="Zaakceptowane" de-DE="Akzeptiert" sv-SE="Accepterad" nb-NO="Akseptert"/>
+		<tran key="Key_0009" en-GB="Accuracy class" da-DK="Præcisionsklasse" pl-PL="Klasa dokładności" de-DE="Genauigkeitsklasse" sv-SE="Precisionsklass" nb-NO="Presisjonsklasse"/>
+		<tran key="Key_0020" en-GB="Actual dist." da-DK="Faktisk dist." pl-PL="Odl. rzeczywista" de-DE="Ist-Dist." sv-SE="Faktiskt avstånd" nb-NO="Faktisk dist."/>
+		<tran key="Key_0021" en-GB="Actual load:" da-DK="Belastning:" pl-PL="Rzeczywisty wsad:" de-DE="Tatsächliche Belastung:" sv-SE="Aktuell belastning:" nb-NO="Faktisk belastning:"/>
+		<tran key="Key_0022" en-GB="Actual speed:" da-DK="Aktuel hastighed:" pl-PL="Rzeczywista prędkość:" de-DE="Tatsächliche Geschwindigkeit:" sv-SE="Faktisk hastighet:" nb-NO="Faktisk hastighet:"/>
+		<tran key="Key_0023" en-GB="Add" da-DK="Tilføj" pl-PL="Dodaj" de-DE="Hinzufügen" sv-SE="Lägg till" nb-NO="Legg til"/>
+		<tran key="Key_0024" en-GB="Add interval" da-DK="Tilføj interval" pl-PL="Dodaj interwał" de-DE="Intervall hinzufügen" sv-SE="Lägg till intervall" nb-NO="Legg til intervall"/>
+		<tran key="Key_0025" en-GB="ADJUST" da-DK="JUSTER" pl-PL="REGULACJA" de-DE="ANGLEICHUNG" sv-SE="JUSTERA" nb-NO="JUSTER"/>
+		<tran key="Key_0026" en-GB="Adjust rejectors" da-DK="Juster udsortering" pl-PL="Regulacja odrzutników" de-DE="Aussortierer einstellen" sv-SE="Justera utsorterare" nb-NO="Juster utsortering"/>
+		<tran key="Key_0027" en-GB="Age (h:m:s:ms):" da-DK="Alder (t:m:s:ms):" pl-PL="Wiek (h:m:s:ms):" de-DE="Alter (h:m:s:ms):" sv-SE="Ålder (t:m:s:ms):" nb-NO="Alder (t:m:s:ms):"/>
+		<tran key="Key_0028" en-GB="Alarms" da-DK="Alarmer" pl-PL="Ostrzeżenia" de-DE="Alarmsignale" sv-SE="Alarm" nb-NO="Alarmer"/>
+		<tran key="Key_0029" en-GB="All" da-DK="Alle" pl-PL="Wszystkie" de-DE="Alle" sv-SE="Alla" nb-NO="Alle"/>
+		<tran key="Key_0030" en-GB="All lots" da-DK="Alle lots" pl-PL="Wszystkie partie" de-DE="Alle Lose" sv-SE="Alla lots" nb-NO="Alle lots"/>
+		<!-- etc.... -->
+	</translations>
+</localization>
