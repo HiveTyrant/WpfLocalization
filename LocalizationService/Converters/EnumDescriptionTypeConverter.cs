@@ -7,7 +7,8 @@ namespace LocalizationService.Converters;
 
 /// <summary>
 /// Converts an Enum value (field) to the content of its DescriptionAttribute as a string.
-/// If the Enum value doesn't declare a DescriptionAttribute value.ToString() is returned.
+/// If the DescriptionAttribute is of type LocalizedDescription, localization will be enforced.
+/// If the Enum value doesn't declare a DescriptionAttribute value.ToString() is returned. 
 /// </summary>
 public class EnumDescriptionTypeConverter : EnumConverter
 {

@@ -11,7 +11,7 @@
         Title="MainWindow" Height="650" Width="900">
     <Window.Resources>
         <localizationConverters:LocalizedValueTypeValueConverter x:Key ="LValueConverter"/>
-        <localizationConverters:LocalizedEnumToDescriptionValueConverter x:Key ="LEnumConverter"/>
+        <localizationConverters:LocalizedTextValueConverter x:Key ="LTextConverter"/>
     </Window.Resources>
 
     <Window.DataContext>
@@ -28,14 +28,16 @@
         <StackPanel Margin="20,0,0,0">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="4" Text="{l:LocalizedText Key_0025}" />
-                <TextBlock Margin="4" Text=" (Key_0025 text)" />
+                <TextBlock Margin="4" Text=" (Key = Key_0025, a text in MultiCultureLocalization.xml)" />
             </StackPanel>
         </StackPanel>
 
-        <TextBlock Margin="4,15,0,0" Text="Text translations - From extra translations (not included for all available cultures)" TextDecorations="Underline" FontWeight="Bold" />
+        <TextBlock Margin="4,15,0,0" Text="Text translations - From 'extra' translation files (not included for all available cultures)" TextDecorations="Underline" FontWeight="Bold" />
         <StackPanel Margin="20,0,0,0">
+            <!-- Localization lookup key for this TextBlock is not specified, so defaults to alternate key = LblTitle.Text (ControlName.PropertyName) -->
             <TextBlock Margin="4" Name="LblTitle" Text="{l:LocalizedText}" />
 
+            <!-- Localization lookup key for this TextBlock is specified (SomeText1) -->
             <TextBlock Margin="4" Name="SomeText1Label" Text="{l:LocalizedText SomeText1}" />
 
             <StackPanel Orientation="Vertical">
@@ -45,6 +47,8 @@
                     <Slider Margin="10,4,4,4" Value="{Binding SliderValue}" Minimum="0" Maximum="5" Width="100" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
+                    <!-- Key for this TextBlock is specified in the property SliderValueKey ("Key22"). This is a Plural text, so the  -->
+                    <!-- content of the property SliderValue is used to determine which localized form of the text is used -->
                     <TextBlock Margin="4" Text="{l:LocalizedText KeySource={Binding SliderValueKey}, CountSource={Binding SliderValue}}" />
                     <TextBlock Margin="4" Text=" (pluralized string)" />
                 </StackPanel>
@@ -53,9 +57,11 @@
             <StackPanel Margin ="0,0,0,0" Orientation="Horizontal">
                 <TextBlock Margin="4" Text="{l:LocalizedText Key_EngineType}" />
                 <TextBlock Margin="4" Text=" Selected Engine:" />
+                <!-- Notice: Even though this looks like a standard binding, the binding is to an Enum type decorated with a TypeConverter -->
                 <TextBlock Margin="4" Text="{Binding SelectedEngineType}" />
             </StackPanel>
 
+            <!-- Binding to List of Enum, not using any XAML tricks (though Enum class is decorated with a TypeConverter (EnumDescriptionTypeConverter) -->
             <StackPanel Margin ="0,0,0,0" Orientation="Horizontal">
                 <ComboBox ItemsSource="{Binding EngineTypes}"
                           SelectedItem="{Binding SelectedEngineType}"
@@ -63,24 +69,26 @@
                 <TextBlock Margin="4" Text=" (Binding to List of Enum, Localization by EnumDescription-TYPE-Converter)" />
             </StackPanel>
 
+            <!-- Binding to Enum class using a MarkupExtension that returns localized Enum field DescriptionAttributes (default would be simple ToString()) -->
             <StackPanel Margin ="0,0,0,0" Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding Source={l:EnumBindingSource {x:Type local:LocalizedEngineTypeEnum}}}"
+                <ComboBox ItemsSource="{Binding Source={l:DescribedEnumBindingSource EnumType={x:Type local:LocalizedEngineTypeEnum}}}"
                           SelectedItem="{Binding SelectedEngineType}"
                           Width="200" Margin="10,4,4,4" VerticalAlignment="Center"/>
                 <TextBlock Margin="4" Text=" (Binding to Enums (only displaying Enum fields with descriptions))" />
             </StackPanel>
 
+            <!-- Binding to Collection<Enum> class using a ValueConverter that returns localized Enum field DescriptionAttributes (default would be simple ToString()) -->
             <StackPanel Margin ="0,0,0,0" Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding EngineTypes, Converter={StaticResource LEnumConverter}}"
+                <ComboBox ItemsSource="{Binding EngineTypes}"
                           SelectedItem="{Binding SelectedEngineType}"
                           Width="200" Margin="10,4,4,4" VerticalAlignment="Center" >
-                    <!--<ComboBox.ItemTemplate>
+                    <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Converter={StaticResource LEnumConverter}}"/>
+                            <TextBlock Text="{Binding Converter={StaticResource LTextConverter}}"/>
                         </DataTemplate>
-                    </ComboBox.ItemTemplate>-->
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBlock Margin="4" Text=" (Binding to List of Enum, Localization by EnumToDescription-VALUE-Converter)" />
+                <TextBlock Margin="4" Text=" (Binding to List of Enum, Localization by LocalizedText-VALUE-Converter)" />
             </StackPanel>
         </StackPanel>
 
@@ -111,6 +119,6 @@
 
         <TextBlock Margin="14,10,0,0" Text="Note: Translations that result in eg. '_Text' or 'SomeControlName.SomePropertyName' means that translation wasn't found" />
 
-        <Button Margin="10, 20, 10, 0" Name="Button1" Content="{l:LocalizedText}" Click="Button1_Click" Width="135"/>
+        <Button Margin="10, 20, 10, 0" Name="Button1" Content="{l:LocalizedText Button1_Content}" Click="Button1_Click" Width="135"/>
     </StackPanel>
 </Window>

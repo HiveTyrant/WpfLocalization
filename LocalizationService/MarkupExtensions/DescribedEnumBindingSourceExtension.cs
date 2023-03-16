@@ -4,8 +4,10 @@ using LocalizationService.Extensions;
 
 namespace LocalizationService.MarkupExtensions;
 
-/// <summary> MarkupExtension that returns the values (fields) of an Enum, where the value has a declared Description attribute </summary>
-public class EnumBindingSourceExtension : MarkupExtension
+/// <summary>
+/// MarkupExtension that returns the values (fields) of an Enum, where the value has a declared Description attribute.
+/// </summary>
+public class DescribedEnumBindingSourceExtension : MarkupExtension
 {
     #region Fields
 
@@ -38,9 +40,9 @@ public class EnumBindingSourceExtension : MarkupExtension
 
     #region Initialization
 
-    public EnumBindingSourceExtension() { }
+    public DescribedEnumBindingSourceExtension() { }
 
-    public EnumBindingSourceExtension(Type enumType)
+    public DescribedEnumBindingSourceExtension(Type enumType)
     {
         EnumType = enumType;
     }

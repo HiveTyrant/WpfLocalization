@@ -108,7 +108,7 @@ namespace LocalizationWpfDemo
             LocalizationManager.Instance.PropertyChanged += OnCultureChanged;
 
             // Read base translations from MultiCulture file - this file could be constructed from the output from a translation bureau  
-            LocalizationManager.Instance.AddCultures(new MultiCultureXmlFileReader("LocalizationFiles/OrigoMulticultureLocalization.xml"));
+            LocalizationManager.Instance.AddCultures(new MultiCultureXmlFileReader("LocalizationFiles/MultiCultureLocalization.xml"));
 
             // Add special/extra translations to already loaded MultiCulture translations as 3 culture files in CSV, XML and Json formats.
             LocalizationManager.Instance.AddCulture(CultureInfo.GetCultureInfo("en-GB"), new SingleCultureCsvFileReader("LocalizationFiles/Extra.en-GB.txt"), true);  // true => Default culture
@@ -120,7 +120,14 @@ namespace LocalizationWpfDemo
             LocalizationManager.Instance.AddCulture(CultureInfo.GetCultureInfo("da-DK"), new SingleCultureCsvFileReader("LocalizationFiles/ValueFormatSpecifiers.da-DK.txt"));
             LocalizationManager.Instance.AddCulture(CultureInfo.GetCultureInfo("fr"), new SingleCultureCsvFileReader("LocalizationFiles/ValueFormatSpecifiers.fr.txt"));
 
-            var str = LocalizedEngineTypeEnum.InternalCombustion.ToString();
+            EngineTypes = new ObservableCollection<LocalizedEngineTypeEnum>
+            {
+                LocalizedEngineTypeEnum.InternalCombustion,
+                LocalizedEngineTypeEnum.Electric,
+                LocalizedEngineTypeEnum.Hybrid,
+                LocalizedEngineTypeEnum.Steam,
+                LocalizedEngineTypeEnum.RubberBand
+            };
         }
 
         private void OnCultureChanged(object? sender, PropertyChangedEventArgs e)
@@ -144,6 +151,10 @@ namespace LocalizationWpfDemo
                 LocalizedEngineTypeEnum.Steam,
                 LocalizedEngineTypeEnum.RubberBand
             };
+
+            var tmp = SelectedEngineType;
+            SelectedEngineType = LocalizedEngineTypeEnum.RubberBand;
+            SelectedEngineType = tmp;
         }
 
         #region INotifyPropertyChanged
