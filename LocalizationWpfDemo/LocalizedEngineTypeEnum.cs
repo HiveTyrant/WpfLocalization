@@ -16,7 +16,7 @@ namespace LocalizationWpfDemo
         [LocalizedDescription("Key_EngineHybrid")]
         Hybrid,
     
-        [Description("Steam engine (Non localized)")]
+        [Description("Steam engine (only std. Description)")]
         Steam,
     
         // Enum value without description

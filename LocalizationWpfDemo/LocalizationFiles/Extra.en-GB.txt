@@ -1,12 +1,12 @@
 SomeText1;Line with some text
 SomeText2;Another line of text
-Key22;There is one item in the list;There are no items in the list;There are {0} items in the list
+PluralText;There is one item in the list;There are no items in the list;There are {0} items in the list
 Button1_Content;Change Language!
 LblTitle_Text;Localization demo program
 DecimalNumber;Decimal number
 DateValue;Date
 CurrencyValue;Curency
-Key_EngineType;Motor type:
+Key_EngineType;Motor type
 Key_EngineInternalCombustion;Internal combustion engine;
 Key_EngineElectric;Electric engine
 Key_EngineHybrid;Hybrid engine

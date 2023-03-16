@@ -6,7 +6,7 @@
 	<Entry key="SomeText2">
 		Tjener der er en flue i min suppe
 	</Entry>
-	<Entry key="Key22">
+	<Entry key="PluralText">
 		<Value>Der er et element i listen</Value>
 		<ZeroValue>Der er ingen elementer i listen</ZeroValue>
 		<PluralValue>Listen indeholder {0} elementer</PluralValue>
@@ -27,7 +27,7 @@
 		<Value>Valuta</Value>
 	</Entry>
     <Entry key="Key_EngineType">
-		<Value>Motor type:</Value>
+		<Value>Motortype</Value>
 	</Entry>
 	<Entry key="Key_EngineInternalCombustion">
 		<Value>Forbrændingsmotor</Value>

@@ -5,7 +5,7 @@
   "SomeText2": {
     "Value": "Phrase aléatoire 2"
   },
-  "Key22": {
+  "PluralText": {
     "Value": "Il y a un élément dans la liste",
     "ZeroValue": "Il n'y a aucun élément dans la liste",
     "PluralValue": "Il y a {0} éléments dans la liste"

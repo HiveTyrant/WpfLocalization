@@ -9,6 +9,7 @@ namespace LocalizationService.Extensions
 {
     public static class EnumExtensions
     {
+        /// <summary> Returns true if Enum value has a Description </summary>
         public static bool HasDescriptionAttribute(this Enum value)
         {
             var attribute = value.GetType()
