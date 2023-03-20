@@ -1,6 +1,7 @@
 ﻿using LocalizationService.Localization;
 using LocalizationService.Reader;
 using LocalizationWpfDemo.Commands;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using NLog.Extensions.Logging;
 
 namespace LocalizationWpfDemo
 {
@@ -108,6 +110,7 @@ namespace LocalizationWpfDemo
             
             var index = (null == CurrentCulture) ? -1 : availableCultures.IndexOf(CurrentCulture);
             index = (index == availableCultures.Count) ? 0 : index+1;
+            if (index >= availableCultures.Count) index = 0;
 
             LocalizationManager.Instance.CurrentCulture = availableCultures[index];
         }
@@ -116,6 +119,10 @@ namespace LocalizationWpfDemo
 
         public MainWindowViewModel()
         {
+            // Logging
+            var loggerFactory = LoggerFactory.Create(builder => builder.AddNLog("nlog.config"));
+            LocalizationManager.Instance.Logger = loggerFactory.CreateLogger<App>();
+
             // Update CurrentCulture property (used in TextBlock on view) when culture is changed
             LocalizationManager.Instance.PropertyChanged += (o, args) => CurrentCulture = LocalizationManager.Instance.CurrentCulture;
 

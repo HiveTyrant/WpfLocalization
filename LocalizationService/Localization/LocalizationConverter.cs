@@ -30,7 +30,7 @@ namespace LocalizationService.Localization
             {
                 default:
                     // (1) CultureInfo
-                    result = LocalizationManager.Instance.GetValue(_key) ?? LocalizationManager.Instance.GetValue(_alternativeKey, false);
+                    result = LocalizationManager.Instance.GetValue(_key, _alternativeKey, false);
                     break;
 
                 case 2:
@@ -41,12 +41,12 @@ namespace LocalizationService.Localization
                     {
                         // CultureInfo + CountSource
                         count = System.Convert.ToInt32(values.First(v => !(v is CultureInfo)));
-                        result = LocalizationManager.Instance.GetValue(_key, count) ?? LocalizationManager.Instance.GetValue(_alternativeKey, count, false);
+                        result = LocalizationManager.Instance.GetValue(_key, _alternativeKey, count, false);
                     }
                     else
                     {
                         // CultureInfo + KeySource
-                        result = LocalizationManager.Instance.GetValue(key.ToString()) ?? LocalizationManager.Instance.GetValue(_alternativeKey, false);
+                        result = LocalizationManager.Instance.GetValue(key.ToString(), _alternativeKey, false);
                     }
                     break;
 
@@ -54,7 +54,7 @@ namespace LocalizationService.Localization
                     // (3) CultureInfo + KeySource + CountSource
                     key = values.FirstOrDefault(v => v is string);
                     count = System.Convert.ToInt32(values.First(v => v != key && !(v is CultureInfo)));
-                    result = LocalizationManager.Instance.GetValue(key?.ToString() ?? "", count) ?? LocalizationManager.Instance.GetValue(_alternativeKey, count, false);
+                    result = LocalizationManager.Instance.GetValue(key?.ToString() ?? "", _alternativeKey, count, false);
                     break;
             }
 

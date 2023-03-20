@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Runtime.CompilerServices;
 using LocalizationService.Reader;
+using Microsoft.Extensions.Logging;
 
 namespace LocalizationService.Localization
 {
@@ -53,6 +54,7 @@ namespace LocalizationService.Localization
         }
 
         public List<CultureInfo> AvailableCultures => _languageEntries.Keys.ToList();
+        public Microsoft.Extensions.Logging.ILogger? Logger { get; set; }
 
         #endregion
 
@@ -76,31 +78,32 @@ namespace LocalizationService.Localization
             }
         }
 
-        public string? GetValue(string? key, bool nullWhenUnfound = true)
+        public string? GetValue(string? key, string? alternativeKey, bool nullWhenNotFound = true)
         {
-            if (_languageEntries == null || CurrentCulture == null)
-                return key;
-
-            var entries = _languageEntries[CurrentCulture];
-
-            if (key == null || !entries.ContainsKey(key))
-                return nullWhenUnfound ? null : key;
-
-            return entries[key].Value;
+            var result = GetValue(key) ?? GetValue(alternativeKey, nullWhenNotFound);
+            return result;
         }
 
-        public string? GetValue(string? key, int count, bool nullWhenNotfound = true)
+        public string? GetValue(string? key, string? alternativeKey, int count, bool nullWhenNotFound = true)
         {
-            if (_languageEntries == null || CurrentCulture == null)
-                return key;
+            var result = GetValue(key, count) ?? GetValue(alternativeKey, count, nullWhenNotFound);
+            return result;
+        }
 
-            var entries = _languageEntries[CurrentCulture];
+        public string? GetValue(string? key, bool nullWhenNotFound = true)
+        {
+            var entry = LookupLocalizationEntry(key);
+            var result = (null == entry) ? (nullWhenNotFound ? null : key) : entry.Value;
+            return result;
+        }
 
-            if (key == null || !entries.ContainsKey(key))
-                return nullWhenNotfound ? null : key;
-
-            var entry = entries[key];
-            return count == 0 ? entry.ZeroValue : count == 1 ? entry.Value : string.Format(entry.PluralValue ?? "", count);
+        public string? GetValue(string? key, int count, bool nullWhenNotFound = true)
+        {
+            var entry = LookupLocalizationEntry(key);
+            var result = (null == entry)
+                ? (nullWhenNotFound ? null : key)
+                : (count == 0 ? entry.ZeroValue : count == 1 ? entry.Value : string.Format(entry.PluralValue ?? "", count));
+            return result;
         }
 
         #endregion
@@ -116,6 +119,30 @@ namespace LocalizationService.Localization
                 // Update existing translation list by adding new translations to existing (overriding entries with same LocalizationKey
                 foreach (var localizationEntry in cultureEntry)
                     _languageEntries[culture][localizationEntry.Key] = localizationEntry.Value;
+        }
+
+        private LocalizationEntry? LookupLocalizationEntry(string? key)
+        {
+            if (null == key)
+            {
+                Logger?.LogWarning("LocalizationManager lookup failed: No key specified");
+                return null;
+            }
+
+            if (!_languageEntries.Any()) 
+                Logger?.LogWarning("LocalizationManager lookup failed: No log-language entries loaded");
+            else if (null == CurrentCulture)
+                Logger?.LogWarning("LocalizationManager lookup failed: CurrentCulture not set");
+            else
+            {
+                var entries = _languageEntries[CurrentCulture];
+                if (entries.ContainsKey(key))
+                    return entries[key];
+
+                Logger?.LogWarning("LocalizationManager lookup failed: no text found for Key: [{}] for Culture: [{}]", key, CurrentCulture);
+            }
+
+            return null;
         }
 
         #endregion
