@@ -80,20 +80,36 @@ namespace LocalizationService.Localization
 
         public string? GetValue(string? key, string? alternativeKey, bool nullWhenNotFound = true)
         {
-            var result = GetValue(key) ?? GetValue(alternativeKey, nullWhenNotFound);
+            var result = GetValue(key) ?? GetValue(alternativeKey);
+
+            if (null == result && !nullWhenNotFound)
+            {
+                // If no localization was found and nullWhenNotFound==false, then return used key vale
+                if (!string.IsNullOrWhiteSpace(key)) result = key;
+                else if (!string.IsNullOrWhiteSpace(key)) result = alternativeKey;
+            }
+
             return result;
         }
 
         public string? GetValue(string? key, string? alternativeKey, int count, bool nullWhenNotFound = true)
         {
             var result = GetValue(key, count) ?? GetValue(alternativeKey, count, nullWhenNotFound);
+
+            if (null == result && !nullWhenNotFound)
+            {
+                // If no localization was found and nullWhenNotFound==false, then return used key vale
+                if (!string.IsNullOrWhiteSpace(key)) result = key;
+                else if (!string.IsNullOrWhiteSpace(key)) result = alternativeKey;
+            }
+
             return result;
         }
 
         public string? GetValue(string? key, bool nullWhenNotFound = true)
         {
             var entry = LookupLocalizationEntry(key);
-            var result = (null == entry) ? (nullWhenNotFound ? null : key) : entry.Value;
+            var result = entry?.Value ?? (nullWhenNotFound ? null : key);
             return result;
         }
 
@@ -112,7 +128,7 @@ namespace LocalizationService.Localization
 
         private void UpdateCultureEntry(CultureInfo culture, Dictionary<string, LocalizationEntry> cultureEntry)
         {
-            if (!_languageEntries.ContainsKey(culture)) 
+            if (!_languageEntries.ContainsKey(culture))
                 // If no translation list exist for culture, then add as new translation list
                 _languageEntries[culture] = cultureEntry;
             else
@@ -129,7 +145,7 @@ namespace LocalizationService.Localization
                 return null;
             }
 
-            if (!_languageEntries.Any()) 
+            if (!_languageEntries.Any())
                 Logger?.LogWarning("LocalizationManager lookup failed: No log-language entries loaded");
             else if (null == CurrentCulture)
                 Logger?.LogWarning("LocalizationManager lookup failed: CurrentCulture not set");
