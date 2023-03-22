@@ -86,6 +86,12 @@
                         </ListView>
                         <TextBlock Margin="4" Text=" (ListView displaying content similar to List-ComboBox control)" />
                     </StackPanel>
+                    <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                        <TextBlock Text="ForeignEnum: " />
+                        <!-- Notice: Even though this looks like a standard binding, the binding is to an Enum type decorated with a TypeConverter -->
+                        <TextBlock Text="{Binding ForeignEnum}" FontWeight="Bold"/>
+                        <TextBlock Text="     (Localized Foreign Assembly defined Enum binding - via decorated TypeConverter )" />
+                    </StackPanel>
                 </StackPanel>
             </Border>
         </StackPanel>

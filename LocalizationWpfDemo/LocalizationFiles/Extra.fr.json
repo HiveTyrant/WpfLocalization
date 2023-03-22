@@ -36,5 +36,11 @@
   },
   "Key_EngineHybrid": {
     "Value": "Moteur hybride"
+  },
+  "Key_FieldNumber1": {
+    "Value": "Field numero 1"
+  },
+  "Key_FieldNumber2": {
+    "Value": "Field alternative"
   }
 }

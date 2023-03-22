@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ForeignEnumAssembly\ForeignEnumAssembly.csproj" />
     <ProjectReference Include="..\LocalizationService\LocalizationService.csproj" />
   </ItemGroup>
 

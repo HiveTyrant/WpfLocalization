@@ -38,4 +38,10 @@
 	<Entry key="Key_EngineHybrid">
 		<Value>Hybridmotor</Value>
 	</Entry>
+	<Entry key="Key_FieldNumber1">
+		<Value>Felt nummer 1</Value>
+	</Entry>
+	<Entry key="Key_FieldNumber2">
+		<Value>Felt nummer 2</Value>
+	</Entry>
 </Entries>

@@ -10,3 +10,5 @@ Key_EngineType;Motor type
 Key_EngineInternalCombustion;Internal combustion engine;
 Key_EngineElectric;Electric engine
 Key_EngineHybrid;Hybrid engine
+Key_FieldNumber1;Field Number 1
+Key_FieldNumber2;Field Number 2

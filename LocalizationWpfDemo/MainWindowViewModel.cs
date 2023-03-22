@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using ForeignEnumAssembly;
 using NLog.Extensions.Logging;
 
 namespace LocalizationWpfDemo
@@ -28,6 +29,12 @@ namespace LocalizationWpfDemo
         #endregion
 
         #region Properties
+
+        #region Commands
+
+        public ICommand ChangeCultureCommand => _changeCultureCommand ??= new RelayCommand(arg => HandleChangeCulture(), null);
+
+        #endregion
 
         public float FloatValue
         {
@@ -102,18 +109,7 @@ namespace LocalizationWpfDemo
             }
         }
 
-        public ICommand ChangeCultureCommand => _changeCultureCommand ??= new RelayCommand(arg => HandleChangeCulture(), null);
-
-        private void HandleChangeCulture()
-        {
-            var availableCultures = LocalizationManager.Instance.AvailableCultures;
-            
-            var index = (null == CurrentCulture) ? -1 : availableCultures.IndexOf(CurrentCulture);
-            index = (index == availableCultures.Count) ? 0 : index+1;
-            if (index >= availableCultures.Count) index = 0;
-
-            LocalizationManager.Instance.CurrentCulture = availableCultures[index];
-        }
+        public ForeignAssemblyDefinedEnum ForeignEnum => ForeignAssemblyDefinedEnum.FieldNumber1;
 
         #endregion
 
@@ -150,6 +146,22 @@ namespace LocalizationWpfDemo
                 LocalizedEngineTypeEnum.RubberBand
             };
         }
+
+        #region Helper methods
+
+        private void HandleChangeCulture()
+        {
+            var availableCultures = LocalizationManager.Instance.AvailableCultures;
+
+            var index = (null == CurrentCulture) ? -1 : availableCultures.IndexOf(CurrentCulture);
+            index = (index == availableCultures.Count) ? 0 : index + 1;
+            if (index >= availableCultures.Count) index = 0;
+
+            LocalizationManager.Instance.CurrentCulture = availableCultures[index];
+        }
+
+        #endregion
+
 
         #region INotifyPropertyChanged
 
